@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<style>
+	#device{border:18px solid lightgrey; background-color: grey; width:1400px; height:600px}
+
+	#homegoals{box-shadow: 0 0 0 1px #000, 0 0 0 5px #808080, 0 0 0 6px #FF0000; background-color: olivedrab; width:70px; 
+                     color:black; font-family: Arial; font-size: 20px; height:70px}
+
+	#visitorgoals{box-shadow: 0 0 0 1px #000, 0 0 0 5px #808080, 0 0 0 6px #008000; background-color: olivedrab; width:70px; 
+                     color:black; font-family: Arial; font-size: 20px; height:70px}
+
+	#display{border:1px solid; border-color: black; background-color: olivedrab; 
+                     color:black; font-family: Arial; font-size: 20px; text-align: left; height:70px}
+
+	#nayttoalkio1{width:50px; color:red; font-family: Arial; font-size: 20px; height:50px;}
+
+	#nayttoalkio2{width:50px; color:green; font-family: Arial; font-size: 20px; height:50px;}
+               
+        button.nayttoalkior{border:1px solid; border-color: red; background-color: lightgrey; width:50px; 
+                             color:black; font-family: Arial; font-size: 20px; height:50px; border-radius: 10px;}
+
+        button.nayttoalkiog{border:1px solid; border-color: green; background-color: lightgrey; width:50px; 
+                             color:black; font-family: Arial; font-size: 20px; height:50px; border-radius: 10px;}
+
+        button.stop{border:1px solid; border-color: black; background-color: red; width:50px; 
+                             color:black; font-family: Arial; font-size: 12px; height:50px; border-radius: 10px}
+
+        button.start{border:1px solid; border-color: black; background-color: green; width:50px; 
+                             color:black; font-family: Arial; font-size: 12px; height:50px; border-radius: 10px}
+
+        button.nayttoalkio{border:1px solid; border-color: black; background-color: lightgrey; width:50px; 
+                             color:black; font-family: Arial; font-size: 12px; height:50px; border-radius: 10px;}
+
+        
+        th.nayttoalkio0{background-color: grey; width:50px; height:50px}
+
+        table.lokerot td.td1 {background-color: olivedrab; 
+                             color:black; font-family: Arial; 
+                             }        
+
+        input[type="text"], textarea {background-color : olivedrab;
+                            border: 1px olivedrab;
+                            font-family: Arial;
+                            width:65px; font-size: 18px; text-align: center; height:25px;
+                            }
+	
+	table.table1 { width:400px; background: black;}
+	table.table1 th.th1 { background: black; border: 3px solid blue; border-radius: 8px;   
+                     color:red; font-family: Arial; font-size: 40px; height:50px; }
+	table.table1 th.th2 { background: black; 
+                     vertical-align: bottom; text-align: right; 
+                     color:white; font-family: Arial; font-size: 20px;}
+	table.table1 th.th3 {background: black; 
+                     vertical-align: top; text-align: left; 
+                     color:white; font-family: Arial; font-size: 20px; width:110px;}
+	table.table1 th.th4 { background: black; 
+                     vertical-align: top; text-align: right; 
+                     color:white; font-family: Arial; font-size: 20px;}
+	table.table1 th.th5 { background: black; border: 3px solid black; border-radius: 8px;   
+                     color:yellow; font-family: Arial; font-size: 30px; height:50px}
+
+	table.table1 td.td1 { background: black; 
+                     color:red; font-family: Arial; font-size: 40px; 
+                     vertical-align: bottom; text-align: center; height:40px}
+	table.table1 td.td2 { background: black; 
+                     color:white; font-family: Arial; font-size: 10px; 
+                     vertical-align: bottom; text-align: right; height:40px}
+	table.table1 td.td3 { background: black; 
+                     color:white; font-family: Arial; font-size: 10px; 
+                     vertical-align: bottom; text-align: left; height:40px}		     
+		     
+	
+	table.table6 {width:110px; }
+	table.table6 th.th1 {background-color: black;  border: 2px solid black;
+                     vertical-align: top; text-align: left;
+                     color:white; font-family: Arial;
+                     width:20px; font-size: 20px;  height:25px; }
+	table.table6 th.th2 {background-color: black;  border: 2px solid black;
+                     vertical-align: top; text-align: left;
+                     color:yellow; font-family: Arial; 
+                     width:90px; font-size: 20px;  height:25px }
+	table.table6 th.th3 {background-color: black;  border: 2px solid black;
+                     vertical-align: top; text-align: left;
+                     color:red; font-family: Arial; 
+                     width:90px; font-size: 20px; height:25px; }
+	
+	</style>
+        
+	<script src="define_settings.js"></script>
+	<script src="format_time.js"></script>    
+	<script src="goal_handler.js"></script> 
+	<script src="playsound.js"></script> 
+	<script src="penalty_handler.js"></script>
+	
+	<meta charset = "UTF-8">
+	<title>Taulukot</title>
+    </head>
+
+
+
+    <body>
+	<table id = "device">
+            <tr>
+		<th class="th1" id="score">			
+                    <table cellspacing="20">
+			<tr>
+                            <th class="th1" id="homegoals">Home</th>
+                            <th class="nayttoalkio0"></th>
+                            <th class="th1" id="visitorgoals">Visitor</th>
+			</tr>
+			<tr>
+                            <th class="nayttoalkio0"></th>
+                            <th class="nayttoalkio0"></th>
+                            <th class="nayttoalkio0"></th>
+			</tr>
+			<tr>
+                            <th class="th1"><button class="nayttoalkior" onclick="RemHomeGoal()" type="button">-</button></th>
+                            <th class="nayttoalkio0"></th>
+                            <th class="th1"><button class="nayttoalkiog" onclick="RemVisitorGoal()" type="button">-</button></th>
+			</tr>
+			<tr>	
+                            <th class="th1" id="nayttoalkio1">H</th>
+                            <th class="th1"><button class="nayttoalkio" onclick="UpdateGoalsToScreen()" type="button">Result</button></th>
+                            <th class="th1" id="nayttoalkio2">G</th>
+			</tr>
+			<tr>
+                            <th class="th1"><button class="nayttoalkior" onclick="AddHomeGoal()" type="button">+</button></th>
+                            <th class="nayttoalkio0"></th>
+                            <th class="th1"><button class="nayttoalkiog" onclick="AddVisitorGoal()" type="button">+</button></th>									
+			</tr>
+			<tr>
+                            <th class="nayttoalkio0"></th>
+                            <th class="nayttoalkio0"></th>
+                            <th class="nayttoalkio0"></th>					
+			</tr>
+                    </table>
+		</th>			
+		<th class="th1" id="gamecntrl">			
+                    <table cellspacing="20">
+			<tr>
+                            <th class="th1" id="display" colspan="3"></th>
+			</tr>
+			<tr>
+                            <th class="nayttoalkio0"></th>
+                            <th class="nayttoalkio0"></th>
+                            <th class="nayttoalkio0"></th>
+			</tr>
+			<tr>
+                            <th class="nayttoalkio0"></th>
+                            <th class="th1"><button class="nayttoalkio" onclick="playSound()" type="button">Torvi</button></th>
+                            <th class="nayttoalkio0"></th>					
+			</tr>
+			<tr>	
+                            <th class="nayttoalkio0"></th>
+                            <th class="th1"><button class="nayttoalkio" onclick="resetAll()" type="button">Reset</button></th>						
+                            <th class="nayttoalkio0"></th>
+			</tr>
+			<tr>
+                            <th class="th1"><button class="stop" onclick="pauseWorker()">Stop</button></th>
+                            <th class="nayttoalkio0"></th>
+                            <th class="th1"><button class="start" onclick="startWorker()">Start</button></th>				
+			</tr>
+			<tr>
+                            <th class="nayttoalkio0"></th>
+                            <th class="nayttoalkio0"></th>
+                            <th class="nayttoalkio0"></th>					
+			</tr>
+                    </table>
+		</th>
+		<th class="th1" id="setup">			
+                    <table cellspacing="20" align= right>
+			<tr>
+                            <th class="th1" id="display" colspan="8">
+                                <table class="lokerot">
+                                    <tr>
+                                        <td><input type="text" id="A1" ></td>
+					<td><input type="text" id="B1" ></td>
+                            		<td><input type="text" id="C1" ></td>
+                                        <td><input type="text" id="D1" ></td>
+                                        <td><input type="text" id="E1" ></td>
+					<td><input type="text" id="F1" ></td>
+					<td><input type="text" id="G1" ></td>
+					<td><input type="text" id="H1" ></td>                                      
+                                    </tr>
+                                    <tr>
+					<td><input type="text" id="A2" ></td>
+					<td><input type="text" id="B2" ></td>
+					<td><input type="text" id="C2" ></td>
+					<td><input type="text" id="D2" ></td>
+					<td><input type="text" id="E2" ></td>
+					<td><input type="text" id="F2" ></td>
+					<td><input type="text" id="G2" ></td>
+					<td><input type="text" id="H2" ></td>
+                                    </tr>
+				</table>
+                            </th>
+			</tr>
+			<tr>
+                            <th class="th1"> <button class="nayttoalkio" onclick="showActive('A1')">A</button></th>
+                            <th class="th1"> <button class="nayttoalkio" onclick="showActive('B1')">B</button></th>
+                            <th class="th1"> <button class="nayttoalkio" onclick="showActive('C1')">C</button></th>
+                            <th class="th1"> <button class="nayttoalkio" onclick="showActive('D1')">D</button></th>
+                            <th class="th1"> <button class="nayttoalkio" onclick="showActive('E1')">E</button></th>
+                            <th class="th1"> <button class="nayttoalkio" onclick="showActive('F1')">F</button></th>
+                            <th class="th1"> <button class="nayttoalkio" onclick="showActive('G1')">G</button></th>
+                            <th class="th1"> <button class="nayttoalkio" onclick="showActive('H1')">H</button></th>
+			</tr>
+			<tr>
+                            <th class="nayttoalkio0"></th>
+                            <th class="nayttoalkio0"></th>
+                            <th class="nayttoalkio0"></th>					
+                            <th class="th1"><button class="nayttoalkio" onclick="openMenu()" type="button">Menu</button></th>
+                            <th class="nayttoalkio0"></th>
+                            <th class="th1"><button class="nayttoalkio" onclick="addDigit(7)" type="button">7</button></th>
+                            <th class="th1"><button class="nayttoalkio" onclick="addDigit(8)" type="button">8</button></th>
+                            <th class="th1"><button class="nayttoalkio" onclick="addDigit(9)" type="button">9</button></th>
+			</tr>
+			<tr>	
+                            <th class="nayttoalkio0"></th>
+                            <th class="nayttoalkio0"></th>
+                            <th class="nayttoalkio0"></th>
+                            <th class="th1"><button class="nayttoalkio" onclick="doSomething()" type="button">F1</button></th>
+                            <th class="nayttoalkio0"></th>
+                            <th class="th1"><button class="nayttoalkio" onclick="addDigit(4)" type="button">4</button></th>
+                            <th class="th1"><button class="nayttoalkio" onclick="addDigit(5)" type="button">5</button></th>
+                            <th class="th1"><button class="nayttoalkio" onclick="addDigit(6)" type="button">6</button></th>
+			</tr>
+			<tr>
+                            <th class="nayttoalkio0"></th>
+                            <th class="nayttoalkio0"></th>
+                            <th class="nayttoalkio0"></th>
+                            <th class="nayttoalkio0"></th>
+                            <th class="nayttoalkio0"></th>
+                            <th class="th1"><button class="nayttoalkio" onclick="addDigit(1)" type="button">1</button></th>
+                            <th class="th1"><button class="nayttoalkio" onclick="addDigit(2)" type="button">2</button></th>
+                            <th class="th1"><button class="nayttoalkio" onclick="addDigit(3)" type="button">3</button></th>
+			</tr>
+			<tr>
+                            <th class="nayttoalkio0"></th>
+                            <th class="nayttoalkio0"></th>
+                            <th class="nayttoalkio0"></th>
+                            <th class="nayttoalkio0"></th>
+                            <th class="nayttoalkio0"></th>                            
+                            <th class="th1"><button class="nayttoalkio" onclick="addDigit(0)" type="button">0</button></th>
+                            <th class="th1"><button class="nayttoalkio" onclick="clearChanges()" type="button">Clear</button></th>
+                            <th class="th1"><button class="nayttoalkio" onclick="checkChanges()" type="button">Enter</button></th>					
+                        </tr>
+                    </table>
+		</th>
+            </tr>
+	</table>
+
+	<br>
+	<br>
+
+
+        <table class="table1" id = "gamedisplay">
+            <tr>
+                <th class="th3">
+                    <table class="table6">
+                        <tr>
+                            <th class="th1">No.</th>
+                            <th class="th2"><output id="homepenalty0nr"></output></th>
+                        </tr>
+                        <tr>
+                            <th class="th1"></th>
+                            <th class="th3"><output id="homepenalty0time"></output></th>       
+                        </tr>
+                    </table>
+                </th>
+        
+                <th class="th1"><output id="homegoalsonscreen">00</output></th>
+                <th class="th5"><output id="period">1</output></th>
+                <th class="th1"><output id="visitorgoalsonscreen">00</output></th>
+                <th class="th3">
+                    <table class="table6">
+                        <tr>
+                            <th class="th1">No.</th>
+                            <th class="th2"><output id="visitorpenalty0nr"></output></th>
+                        </tr>
+                        <tr>
+                            <th class="th1"></th>
+                            <th class="th3"><output id="visitorpenalty0time"></output></th>       
+                        </tr>
+                    </table>
+                </th>       
+            </tr>
+            <tr>
+                <th class="th3">
+                    <table class="table6">
+                        <tr>
+                            <th class="th1">No.</th>
+                            <th class="th2"><output id="homepenalty1nr"></output></th>
+                        </tr>
+                        <tr>
+                            <th class="th1"></th>
+                            <th class="th3"><output id="homepenalty1time"></output></th>       
+                        </tr>
+                    </table>
+                </th>
+        
+                <td class="td2"><output id="hometimeout"></output></td>
+                <td class="td1"><output id="breakperiod"></output></td>
+                <td class="td3"><output id="visitortimeout"></output></td>
+                <th class="th3">
+                    <table class="table6">
+                        <tr>
+                            <th class="th1">No.</th>
+                            <th class="th2"><output id="visitorpenalty1nr"></output></th>
+                        </tr>
+                        <tr>
+                            <th class="th1"></th>
+                            <th class="th3"><output id="visitorpenalty1time"></output></th>       
+                        </tr>
+                    </table>
+                </th> 
+            </tr>
+            <tr>
+                <th class="th3">
+                    <table class="table6">
+                        <tr>
+                            <th class="th1">No.</th>
+                            <th class="th2"><output id="homepenalty2nr"></output></th>
+                        </tr>
+                        <tr>
+                            <th class="th1"></th>
+                            <th class="th3"><output id="homepenalty2time"></output></th>       
+                        </tr>
+                    </table>
+                </th>
+                <th class="th4">H</th>
+                <th class="th1"><output id="gametime">00:00</output></th>
+                <th class="th3">G</th>
+                <th class="th3">
+                    <table class="table6">
+                        <tr>
+                            <th class="th1">No.</th>
+                            <th class="th2"><output id="visitorpenalty2nr"></output></th>
+                        </tr>
+                        <tr>
+                            <th class="th1"></th>
+                            <th class="th3"><output id="visitorpenalty2time"></output></th>       
+                        </tr>
+                    </table>
+                </th>
+            </tr>
+        </table>
+
+    </body>
+</html>
