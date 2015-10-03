@@ -132,7 +132,8 @@ function setLongPenalty(){
 
 
 function setPeriodCount(){
-    period_count = given_number; 
+    period_count = given_number;
+    alert("per_count: " + period_count);
     var col=document.getElementById("E2");
     col.style.color="black";
     document.getElementById('E2').value = period_count;    
@@ -653,10 +654,10 @@ function startWorker() {
             w = new Worker("workers.js");
         }
         //pÃ¤ivitÃ¤ erÃ¤
- //     if (break_time > period_count)            
- //         break_time = period_count;
- //     else{
-            document.getElementById("period").innerHTML = break_time;    
+      //if (break_time > period_count)            
+      //    break_time = period_count;
+      //else{
+            document.getElementById("period").innerHTML = period_count;    
             w.onmessage = function(event) {             
             new_pause_time = pause_time + event.data;
             if (new_pause_time >= game_period*60){  //game_period sekenteina //erÃ¤n pituus 10s!!!!!!!!!!!!!!!!!!
@@ -680,7 +681,7 @@ function startWorker() {
                 checkAndStartPenalties();
             }
             };
-//      }   
+      //}   
     }
     else {
         document.getElementById("gametime").innerHTML = "Sorry, your browser does not support Web Workers...";
